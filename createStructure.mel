@@ -1,0 +1,19 @@
+﻿proc createStructuredSpheres(string $parentSphere, int $repetitions, int $start) {
+    int $count = 0;
+    if ($start) {
+        sphere -name $parentSphere;  
+    }
+
+    select -r $parentSphere;
+    string $parents[] = `ls -sl`;
+    string $children[] = `duplicate $parents[0]`;
+    parent $children[0] $parents[0];
+    $count += 1;
+
+    if ($count != $repetitions-1) {
+        createStructuredSpheres($children[0], $repetitions - 1, 0);
+    }
+    
+} 
+
+createStructuredSpheres("Sphere", 5, 1);

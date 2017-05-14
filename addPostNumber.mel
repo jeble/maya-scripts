@@ -1,0 +1,14 @@
+﻿proc add_postNumber(int $startingPoint) {
+    string $currentNodes[] = `ls -sl -dag -type "transform"`; // select objects first
+    
+    int $nodeSize = size($currentNodes);
+
+    for ($currentName in $currentNodes) {
+        if ($startingPoint < size($currentNodes)) {
+            rename -ignoreShape $currentName ($currentName + "_" + $startingPoint);
+        }
+        $startingPoint++;
+    }
+}
+
+add_postNumber(0);

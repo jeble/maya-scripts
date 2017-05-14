@@ -1,0 +1,10 @@
+﻿proc add_postfix(string $postfix) {
+    string $currentNodes[] = `ls -sl -dag`; // select objects first
+    
+    for ($currentName in $currentNodes) {
+        rename -ignoreShape $currentName ($currentName + "_" + $postfix); 
+    }
+}
+
+
+add_postfix("SPHERE"); // Adds _SPHERE to all the selected objects in the directed acyclic graph.
